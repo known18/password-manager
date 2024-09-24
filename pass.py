@@ -5,7 +5,6 @@ def passgen():
  long=int(input("enter the length of password: "))
  if long<=1:
    print("password length is too short")
-
  else:
    long=long-1
    passw1=choice(l)
@@ -21,22 +20,24 @@ def passkeeper():
   logpass=input("enter the login password:") 
   f= open("Password.txt","a")
   f.write(logid+"|"+logpass+"\n")
-  
-
-
-
- 
-
+def passreader():
+  with open("Password.txt","r") as f:
+   for line in f:
+    userid,password= line.strip().split("|")
+    print("logid:",userid,",","password:",password)
 while True:
    print(" enter 1 to create a password \n",
          "enter 2 to save a password \n",
-         "enter 3 to exit")
+         "enter 3 to view password \n",
+         "enter 4 to exit")
    cho=int(input("enter your choice: "))
    if cho==1:
       passgen()
    elif cho==2:
      passkeeper()
    elif cho==3:
+      passreader()
+   elif cho==4:
       break 
    else:
      print("Invalid choice")
